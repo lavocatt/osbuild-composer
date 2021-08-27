@@ -50,6 +50,62 @@ non-root user inside the container.  The internal web server now uses port
 
 See rhbz#1945238
 
+Contributions from: Thomas Lavocat, jabia99, Ondřej Budai, Chloe Kaubisch, Christian Kellner, Jakub Rusz, Diaa Sami, sanne, Achilleas Koutsou, Juan Abia, Xiaofeng Wang, Brian C. Lane, Alexander Todorov, Tomas Hozza, Gianluca Zuccarelli
+
+— Location, 2021-08-27
+
+## CHANGES WITH 32:
+
+# Add custom file system support for RHEL 8.5
+
+The `weldr` api has been extended to support custom file systems for RHEL 8.5.
+Filesystem `mountpoints` and minimum partition `size` can be set under blueprint customizations, as below:
+
+```toml
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 2147483648
+```
+
+In addition to the root mountpoint, `/`, the following `mountpoints` and their sub-directories are supported:
+
+- `/var`
+- `/home`
+- `/opt`
+- `/srv`
+- `/usr`
+- `/app`
+- `/data`
+# Add custom file system support for RHEL 9.0
+
+The `weldr` api has been extended to support custom file systems for RHEL 9.0.
+Filesystem `mountpoints` and minimum partition `size` can be set under blueprint customizations, as below:
+
+```toml
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 2147483648
+```
+
+In addition to the root mountpoint, `/`, the following `mountpoints` and their sub-directories are supported:
+
+- `/var`
+- `/home`
+- `/opt`
+- `/srv`
+- `/usr`
+- `/app`
+- `/data`
+# RHEL-Edge container image now uses nginx and serves on port 8080
+
+Previously, the edge-container image type was unable to run in unprivileged
+mode which prevented it from being used on OpenShift 4.  The container now uses
+nginx to serve the commit and a configuration that allows it to run as a
+non-root user inside the container.  The internal web server now uses port
+`8080` instead of `80`.
+
+See rhbz#1945238
+
 Contributions from: Ondřej Budai, jabia99, Gianluca Zuccarelli, Chloe Kaubisch, Jakub Rusz, Brian C. Lane, Thomas Lavocat, Tomas Hozza, Juan Abia, Xiaofeng Wang, sanne, Achilleas Koutsou, Diaa Sami, Alexander Todorov, Christian Kellner
 
 — Location, 2021-08-27
