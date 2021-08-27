@@ -1,3 +1,117 @@
+## CHANGES WITH 32:
+
+# Add custom file system support for RHEL 8.5
+
+The `weldr` api has been extended to support custom file systems for RHEL 8.5.
+Filesystem `mountpoints` and minimum partition `size` can be set under blueprint customizations, as below:
+
+```toml
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 2147483648
+```
+
+In addition to the root mountpoint, `/`, the following `mountpoints` and their sub-directories are supported:
+
+- `/var`
+- `/home`
+- `/opt`
+- `/srv`
+- `/usr`
+- `/app`
+- `/data`
+# Add custom file system support for RHEL 9.0
+
+The `weldr` api has been extended to support custom file systems for RHEL 9.0.
+Filesystem `mountpoints` and minimum partition `size` can be set under blueprint customizations, as below:
+
+```toml
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 2147483648
+```
+
+In addition to the root mountpoint, `/`, the following `mountpoints` and their sub-directories are supported:
+
+- `/var`
+- `/home`
+- `/opt`
+- `/srv`
+- `/usr`
+- `/app`
+- `/data`
+# RHEL-Edge container image now uses nginx and serves on port 8080
+
+Previously, the edge-container image type was unable to run in unprivileged
+mode which prevented it from being used on OpenShift 4.  The container now uses
+nginx to serve the commit and a configuration that allows it to run as a
+non-root user inside the container.  The internal web server now uses port
+`8080` instead of `80`.
+
+See rhbz#1945238
+
+Contributions from: Diaa Sami, Brian C. Lane, Christian Kellner, Achilleas Koutsou, Ondřej Budai, jabia99, sanne, Jakub Rusz, Tomas Hozza, Xiaofeng Wang, Gianluca Zuccarelli, Juan Abia, Alexander Todorov, Chloe Kaubisch
+
+— Location, 2021-08-27
+
+## CHANGES WITH 32:
+
+# Add custom file system support for RHEL 8.5
+
+The `weldr` api has been extended to support custom file systems for RHEL 8.5.
+Filesystem `mountpoints` and minimum partition `size` can be set under blueprint customizations, as below:
+
+```toml
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 2147483648
+```
+
+In addition to the root mountpoint, `/`, the following `mountpoints` and their sub-directories are supported:
+
+- `/var`
+- `/home`
+- `/opt`
+- `/srv`
+- `/usr`
+- `/app`
+- `/data`
+# Add custom file system support for RHEL 9.0
+
+The `weldr` api has been extended to support custom file systems for RHEL 9.0.
+Filesystem `mountpoints` and minimum partition `size` can be set under blueprint customizations, as below:
+
+```toml
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 2147483648
+```
+
+In addition to the root mountpoint, `/`, the following `mountpoints` and their sub-directories are supported:
+
+- `/var`
+- `/home`
+- `/opt`
+- `/srv`
+- `/usr`
+- `/app`
+- `/data`
+# RHEL-Edge container image now uses nginx and serves on port 8080
+
+Previously, the edge-container image type was unable to run in unprivileged
+mode which prevented it from being used on OpenShift 4.  The container now uses
+nginx to serve the commit and a configuration that allows it to run as a
+non-root user inside the container.  The internal web server now uses port
+`8080` instead of `80`.
+
+See rhbz#1945238
+
+Contributions from: Chloe Kaubisch, sanne, Christian Kellner, Alexander Todorov, Brian C. Lane, Juan Abia, Xiaofeng Wang, Achilleas Koutsou, jabia99, Diaa Sami, Tomas Hozza, Gianluca Zuccarelli, Ondřej Budai, Jakub Rusz
+
+— Location, 2021-08-27
+
+changes \o/
+
 # OSBuild Composer - Operating System Image Composition Services
 
 ## CHANGES WITH 31:
