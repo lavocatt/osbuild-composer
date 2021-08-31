@@ -213,7 +213,7 @@ func (h *apiHandlers) Compose(ctx echo.Context) error {
 				case error:
 					error_type = http.StatusInternalServerError
 				}
-				return echo.NewHTTPError(error_type, "Failed to depsolve base packages for %s/%s/%s: %s", ir.ImageType, ir.Architecture, request.Distribution, err.Error())
+				return echo.NewHTTPError(error_type, fmt.Sprintf("Failed to depsolve base packages for %s/%s/%s: %s", ir.ImageType, ir.Architecture, request.Distribution, err.Error()))
 			}
 			pkgSpecSets[name] = pkgs
 		}
