@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 
 	"github.com/osbuild/osbuild-composer/internal/common"
 	"github.com/osbuild/osbuild-composer/internal/upload/azure"
@@ -97,6 +98,10 @@ func main() {
 			OAuthURL         string `toml:"oauth_url"`
 			OfflineTokenPath string `toml:"offline_token"`
 		} `toml:"authentication"`
+		AWS *struct {
+			AccessKeyId     *string `toml:"access_key_id"`
+			SecretAccessKey *string `toml:"secret_access_key"`
+		} `toml:"AWS"`
 	}
 	var unix bool
 	flag.BoolVar(&unix, "unix", false, "Interpret 'address' as a path to a unix domain socket instead of a network address")
@@ -218,6 +223,15 @@ func main() {
 		}
 	}
 
+	var awsCredentials *credentials.Credentials
+	if config.AWS != nil {
+		awsCredentials = credentials.NewStaticCredentials(*config.AWS.AccessKeyId, *config.AWS.SecretAccessKey, "")
+		_, err := awsCredentials.Get()
+		if err != nil {
+			log.Fatalf("cannot load AWS credentials: %v", err)
+		}
+	}
+
 	jobImpls := map[string]JobImplementation{
 		"osbuild": &OSBuildJobImpl{
 			Store:       store,
@@ -225,6 +239,7 @@ func main() {
 			KojiServers: kojiServers,
 			GCPCreds:    gcpCredentials,
 			AzureCreds:  azureCredentials,
+			AWSCreds:    awsCredentials,
 		},
 		"osbuild-koji": &OSBuildKojiJobImpl{
 			Store:       store,

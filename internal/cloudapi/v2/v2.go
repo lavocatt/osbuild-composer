@@ -294,8 +294,8 @@ func (h *apiHandlers) PostCompose(ctx echo.Context) error {
 			t := target.NewAWSTarget(&target.AWSTargetOptions{
 				Filename:          imageType.Filename(),
 				Region:            awsUploadOptions.Region,
-				AccessKeyID:       awsUploadOptions.S3.AccessKeyId,
-				SecretAccessKey:   awsUploadOptions.S3.SecretAccessKey,
+				AccessKeyID:       *awsUploadOptions.S3.AccessKeyId,
+				SecretAccessKey:   *awsUploadOptions.S3.SecretAccessKey,
 				Bucket:            awsUploadOptions.S3.Bucket,
 				Key:               key,
 				ShareWithAccounts: share,
@@ -322,8 +322,8 @@ func (h *apiHandlers) PostCompose(ctx echo.Context) error {
 			t := target.NewAWSS3Target(&target.AWSS3TargetOptions{
 				Filename:        imageType.Filename(),
 				Region:          awsS3UploadOptions.Region,
-				AccessKeyID:     awsS3UploadOptions.S3.AccessKeyId,
-				SecretAccessKey: awsS3UploadOptions.S3.SecretAccessKey,
+				AccessKeyID:     *awsS3UploadOptions.S3.AccessKeyId,
+				SecretAccessKey: *awsS3UploadOptions.S3.SecretAccessKey,
 				Bucket:          awsS3UploadOptions.S3.Bucket,
 				Key:             key,
 			})
